@@ -1,1 +1,1 @@
-The goal of this project is to use and test decision tree predictors for binary classification, particularly to identify whether mushrooms are toxic based on a variety of characteristics.
+The main task of this project is the implementation from scratch of tree predictors for binary classification to determine whether mushrooms are poisonous
