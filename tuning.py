@@ -75,19 +75,19 @@ class DecisionTree:
                 or (num_samples < self.min_samples_split) \
                 or (np.unique(y).size == 1):
             leaf_value = self._most_common_label(y)
-            return TreeNode(value=leaf_value)
+            return Node(value=leaf_value)
 
         feat_idxs = np.random.choice(num_features, num_features, replace=False)
         best_feat, best_thresh = self._best_criteria(X, y, feat_idxs)
         if best_feat is None:
             leaf_value = self._most_common_label(y)
-            return TreeNode(value=leaf_value)
+            return Node(value=leaf_value)
 
         self.leaf_count += 1
         left_idxs, right_idxs = self._split(X[:, best_feat], best_thresh)
         left = self._grow_tree(X[left_idxs, :], y[left_idxs], depth + 1)
         right = self._grow_tree(X[right_idxs, :], y[right_idxs], depth + 1)
-        return TreeNode(best_feat, best_thresh, left, right)
+        return Node(best_feat, best_thresh, left, right)
 
     def _best_criteria(self, X, y, feat_idxs):
         best_gain = -1
